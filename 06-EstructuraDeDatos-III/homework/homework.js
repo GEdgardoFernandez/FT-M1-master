@@ -55,27 +55,30 @@ BinarySearchTree.prototype.contains = function (value) {
 // según se indique por parámetro ("post-order", "pre-order", o "in-order"). 
 //Nota: si no se provee ningún parámetro, hará el recorrido "in-order" por defecto.
 
-BinarySearchTree.prototype.depthFirstForEach = function (param = "in-order") {
-   let acum = [];
-   if (param === "pre-order") {
-      acum.push(this.value); 
-   }
-
-   if (this.left) {
-      acum = acum.concat(this.left.depthFirstForEach(param))
-   }
-
+BinarySearchTree.prototype.depthFirstForEach = function (cb, param) {
+   
    if (param === "in-order") {
-      acum.push(this.value); 
+      cb(this.value)
+      if (this.left) {
+         this.left.depthFirstForEach(cb, param)
+      }
+      if (this.right) {
+         this.right.depthFirstForEach(cb, param)
+      }
+   }else if (param === "pre-order"){
+      if (this.left) {
+         this.left.depthFirstForEach(cb, param)
+      }
+      if (this.right) {
+         this.right.depthFirstForEach(cb, param)
+      }
+      cb(this.value)
+   }else {
+
    }
 
-   if (this.right) {
-      acum = acum.concat(this.right.depthFirstForEach(param))
-   }
+   
 
-   if (param === "post-order") {
-      acum.push(this.value)
-   }
 };
 BinarySearchTree.prototype.breadthFirstForEach = function () {
    
