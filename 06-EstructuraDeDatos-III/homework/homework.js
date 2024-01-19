@@ -29,13 +29,13 @@ BinarySearchTree.prototype.insert = function (value) {
    if (value < this.value) {
       if (this.left) {
          this.left.insert(value);
-      }else {
+      } else {
          this.left = nuevoNodo;
       }
    } else {
       if (this.right) {
          this.right.insert(value);
-      }else {
+      } else {
          this.right = nuevoNodo;
       }
    }
@@ -51,37 +51,60 @@ BinarySearchTree.prototype.contains = function (value) {
 
    return false;
 };
-// depthFirstForEach: recorre el árbol siguiendo el orden depth first (DFS) en cualquiera de sus variantes,
-// según se indique por parámetro ("post-order", "pre-order", o "in-order"). 
-//Nota: si no se provee ningún parámetro, hará el recorrido "in-order" por defecto.
+//! depthFirstForEach: recorre el árbol siguiendo el orden depth first (DFS) en cualquiera de sus variantes,
+//! según se indique por parámetro ("post-order", "pre-order", o "in-order"). 
+//! Nota: si no se provee ningún parámetro, hará el recorrido "in-order" por defecto.
 
-BinarySearchTree.prototype.depthFirstForEach = function (cb, param) {
+BinarySearchTree.prototype.depthFirstForEach = function (cb, order) {
    
-   if (param === "in-order") {
-      cb(this.value)
-      if (this.left) {
-         this.left.depthFirstForEach(cb, param)
-      }
-      if (this.right) {
-         this.right.depthFirstForEach(cb, param)
-      }
-   }else if (param === "pre-order"){
-      if (this.left) {
-         this.left.depthFirstForEach(cb, param)
-      }
-      if (this.right) {
-         this.right.depthFirstForEach(cb, param)
-      }
-      cb(this.value)
-   }else {
-
+   if (typeof cb !== "function") {
+      throw new Error("El callback debe ser una funcion");
    }
 
-   
+   switch (order) {
+      case "in-order":
+         if (this.left !== null) {
+            this.left.depthFirstForEach(cb, order)
+         };
+         cb(this.value);
+         if (this.right !== null) {
+            this.right.depthFirstForEach(cb, order)
+         };
+         break;
+      case "pre-order":
+         cb(this.value);
+         if (this.left !== null) {
+            this.left.depthFirstForEach(cb, order);
+         };
+         if (this.right !== null) {
+            this.right.depthFirstForEach(cb, order);
+         };
+         break;
+      case "post-order":
+         if (this.left !== null) {
+            this.left.depthFirstForEach(cb, order)
+         }
+         if (this.right !== null) {
+            this.right.depthFirstForEach(cb, order)
+         }
+         cb(this.value)
+         break;
+
+      default:
+
+         if (this.left !== null) {
+            this.left.depthFirstForEach(cb, order);
+         };
+         cb(this.value);
+         if (this.right !== null) {
+            this.right.depthFirstForEach(cb, order);
+         };
+         break;
+   }
 
 };
 BinarySearchTree.prototype.breadthFirstForEach = function () {
-   
+
 };
 // No modifiquen nada debajo de esta linea
 // --------------------------------
