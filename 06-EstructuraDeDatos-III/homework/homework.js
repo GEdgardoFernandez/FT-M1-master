@@ -51,9 +51,9 @@ BinarySearchTree.prototype.contains = function (value) {
 
    return false;
 };
-//! depthFirstForEach: recorre el árbol siguiendo el orden depth first (DFS) en cualquiera de sus variantes,
-//! según se indique por parámetro ("post-order", "pre-order", o "in-order"). 
-//! Nota: si no se provee ningún parámetro, hará el recorrido "in-order" por defecto.
+//depthFirstForEach: recorre el árbol siguiendo el orden depth first (DFS) en cualquiera de sus variantes,
+// según se indique por parámetro ("post-order", "pre-order", o "in-order"). 
+// Nota: si no se provee ningún parámetro, hará el recorrido "in-order" por defecto.
 
 BinarySearchTree.prototype.depthFirstForEach = function (cb, order) {
    
@@ -103,8 +103,29 @@ BinarySearchTree.prototype.depthFirstForEach = function (cb, order) {
    }
 
 };
-BinarySearchTree.prototype.breadthFirstForEach = function () {
 
+// breadthFirstForEach: recorre el árbol siguiendo el orden breadth first (BFS)
+BinarySearchTree.prototype.breadthFirstForEach = function (cb) {
+   if (typeof cb !== "function") {
+      throw new Error("El callback debe ser una funcion");
+   }
+   const queue = [];
+
+   if (this !== null) {
+       queue.push(this);
+
+       while (queue.length > 0) {
+           const currentNode = queue.shift();
+           cb(currentNode.value);
+
+           if (currentNode.left !== null) {
+               queue.push(currentNode.left);
+           }
+           if (currentNode.right !== null) {
+               queue.push(currentNode.right);
+           }
+       }
+   }
 };
 // No modifiquen nada debajo de esta linea
 // --------------------------------
