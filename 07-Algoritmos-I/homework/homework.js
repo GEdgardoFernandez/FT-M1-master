@@ -7,9 +7,9 @@ function factorear(num) {
   // Ej: factorear(180) --> [1, 2, 2, 3, 3, 5] Ya que 1x2x2x3x3x5 = 180 y son todos números primos
   // Tu código:
   //!Pasos
-  //! 1) crear un arreglo que contenga 1 que es el valor mas pequeño.
-  //! 2) usar Bucle FOR para dividir y buscar los primos.
-  //! 3) usar WHILE para verificar si el resto de num  por i da 0.
+  //* 1) crear un arreglo que contenga 1 que es el valor mas pequeño.
+  //* 2) usar Bucle FOR para dividir y buscar los primos.
+  //* 3) usar WHILE para verificar si el resto de num  por i da 0.
   let array1 = [1];
   for (let i = 2; i <= num; i++){
    while (num % i === 0) {
@@ -25,11 +25,11 @@ function bubbleSort(array) {
   // Devolver el array ordenado resultante
   // Tu código:
   //! Pasos
-  //! 1) crear una variable bandera.
-  //! 2) usar do - while y for para recorrer el arreglo.
-  //! 3) comparar si el la posicion en i+1 es mayor a la posicion i.
-  //! 4) en caso positivo mover el que sea menor, en caso contrario seguir comparando.
-  //! 5) devolver el arreglo.
+  //* 1) crear una variable bandera.
+  //* 2) usar do - while y for para recorrer el arreglo.
+  //* 3) comparar si el la posicion en i+1 es mayor a la posicion i.
+  //* 4) en caso positivo mover el que sea menor, en caso contrario seguir comparando.
+  //* 5) devolver el arreglo.
   let bandera;
   do {
     bandera = false;
@@ -75,7 +75,23 @@ function selectionSort(array) {
   // el array recibido como parámetro utilizando dos arreglos
   // Devolver el array ordenado resultante
   // Tu código:
-
+  //!pasos
+  //* 1) crear un for para recorrer el array.
+  //* 2) crear variable para almacenar el menor.
+  //* 3) comparar la posicion i con la posicion i + 1 para validar si es menor que la variable.
+  //* 4) en caso positivo, intercambiar hasta su posicion final.
+  //* 5) devolver el array.
+  let menor;
+  for (let i = 0; i < array.length; i++) {
+    menor = i;
+    for (let j = i + 1; j < array.length; j++) {
+      if (array[menor] > array[j]) {
+        menor = j;
+      }
+    }
+    [array[i], array[menor]] = [array[menor], array[i]]
+}
+return array;
 }
 
 
