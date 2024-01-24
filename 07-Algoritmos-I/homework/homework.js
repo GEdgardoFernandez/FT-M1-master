@@ -6,6 +6,10 @@ function factorear(num) {
   // los factores por los cuales se va dividiendo a dicho número (De menor a mayor)
   // Ej: factorear(180) --> [1, 2, 2, 3, 3, 5] Ya que 1x2x2x3x3x5 = 180 y son todos números primos
   // Tu código:
+  if (typeof num !== 'number') {
+    return 'Debes ingresar un nnumero';
+    
+  }
   //!Pasos
   //* 1) crear un arreglo que contenga 1 que es el valor mas pequeño.
   //* 2) usar Bucle FOR para dividir y buscar los primos.
@@ -24,6 +28,9 @@ function bubbleSort(array) {
   // el array recibido como parámetro
   // Devolver el array ordenado resultante
   // Tu código:
+  if (typeof array.length === 0) {
+    return 'Debes ingresar un arreglo con numeros';
+  }
   //! Pasos
   //* 1) crear una variable bandera.
   //* 2) usar do - while y for para recorrer el arreglo.
@@ -50,6 +57,10 @@ function insertionSort(array) {
   // el array recibido como parámetro utilizando arreglos
   // Devolver el array ordenado resultante
   // Tu código:
+  if (typeof array.length === 0) {
+    return 'Debes ingresar un arreglo con numeros';
+  }
+
   //! pasos
   //* 1) crear una variables para guardar posicion.
   //* 2) crear un for para recorrer el array.
@@ -75,6 +86,9 @@ function selectionSort(array) {
   // el array recibido como parámetro utilizando dos arreglos
   // Devolver el array ordenado resultante
   // Tu código:
+  if (typeof array.length === 0) {
+    return 'Debes ingresar un arreglo con numeros';
+  }
   //!pasos
   //* 1) crear un for para recorrer el array.
   //* 2) crear variable para almacenar el menor.
