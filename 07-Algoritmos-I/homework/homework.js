@@ -50,7 +50,23 @@ function insertionSort(array) {
   // el array recibido como parámetro utilizando arreglos
   // Devolver el array ordenado resultante
   // Tu código:
+  //! pasos
+  //* 1) crear una variables para guardar posicion.
+  //* 2) crear un for para recorrer el array.
+  //* 3) validar si la posicion i es menor a la posicion i + 1.
+  //* 4) en caso positivo, intercambiar hasta su posicion final
+  //* 5) devolver el array.
+  let posicion
 
+  for (let i = 1; i < array.length; i++) {
+    posicion = i
+    while (posicion > 0 && array[posicion] < array[posicion - 1]) {
+      [array[posicion], array[posicion - 1]] = [array[posicion - 1], array[posicion]]
+      posicion--
+    }
+
+  }
+  return array;
 }
 
 
