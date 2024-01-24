@@ -41,8 +41,38 @@ function mergeSort(array) {
   if (typeof array.length <= 0) {
     return 'Debes ingresar un arreglo con numeros';
   }
+  //! pasos
+  //* 1) verificar si array tiene un solo elemento, en caso positivo devolver el array.
+  //* 2) crear variables para almacenar el primer, medio y segundo elemento.
+  //* 3) crear un for para recorrer el array e ir diviendolo hasta que quede 1 solo valor dentro del mismo.
+  //* 4) comparar el primer elemento con el segundo elemento y pushear al array pero en forma odenada de menor a mayor.
+  //* 5) devolver el array.
+  if (array.length <= 1) {
+    return array
+    
+  }
+  let medio = Math.floor(array.length / 2);
+  let primerElemento = array.slice(0, medio);
+  let segundoElemento = array.slice(medio);
+  function merge(primerElemento, segundoElemento){
+    let result = [];
+    let i = 0;
+    let j = 0;
+    while(i < primerElemento.length && j < segundoElemento.length){
+      if(primerElemento[i] < segundoElemento[j]){
+        result.push(primerElemento[i])
+        i++
+      } else {
+        result.push(segundoElemento[j])
+        j++
+      }
+    }
+    return result.concat(primerElemento.slice(i), segundoElemento.slice(j))
+  }
+  let left = mergeSort(primerElemento);
+  let right = mergeSort(segundoElemento);
 
-
+  return merge(left, right);
   //okey probemos ahora
 }
 
