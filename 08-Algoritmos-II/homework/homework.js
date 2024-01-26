@@ -6,6 +6,9 @@ function quickSort(array) {
   // el array recibido como parámetro
   // Devolver el array ordenado resultante
   // Tu código:
+  if (typeof array === "array" && array.length > 1) {
+    return 'Debes ingresar un arreglo con numeros';
+  }
 
   //! Pasos
   //* 1) crear variables para almacenar los arreglos left y right, y pivote
@@ -38,7 +41,7 @@ function mergeSort(array) {
   // el array recibido como parámetro
   // Devolver el array ordenado resultante
   // Tu código:
-  if (typeof array.length <= 0) {
+  if (typeof array === "array" && array.length > 1) {
     return 'Debes ingresar un arreglo con numeros';
   }
   //! pasos
@@ -54,6 +57,8 @@ function mergeSort(array) {
   let medio = Math.floor(array.length / 2);
   let primerElemento = array.slice(0, medio);
   let segundoElemento = array.slice(medio);
+  let left = mergeSort(primerElemento);
+  let right = mergeSort(segundoElemento);
   function merge(primerElemento, segundoElemento){
     let result = [];
     let i = 0;
@@ -69,8 +74,7 @@ function mergeSort(array) {
     }
     return result.concat(primerElemento.slice(i), segundoElemento.slice(j))
   }
-  let left = mergeSort(primerElemento);
-  let right = mergeSort(segundoElemento);
+
 
   return merge(left, right);
   //okey probemos ahora
